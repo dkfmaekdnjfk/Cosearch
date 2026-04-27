@@ -6,6 +6,9 @@
 
 분석 현황: `memory/project_experiment_status.md` | Vault 규칙: `obsidian/00_Meta/CONVENTIONS.md`
 
+> **첫 세션이라면** — `obsidian/00_Meta/START_HERE.md`를 읽고 사용자에게 세팅 순서를 안내할 것.
+> 세팅 완료 여부는 이 줄을 삭제하거나 CLAUDE.md의 프로젝트 설명이 채워진 것으로 판단한다.
+
 ---
 
 ## 핵심 경로
