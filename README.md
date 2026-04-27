@@ -1,8 +1,23 @@
-# Research Project Template
+```
+ ██████╗ ██████╗ ███████╗███████╗ █████╗ ██████╗  ██████╗██╗  ██╗
+██╔════╝██╔═══██╗██╔════╝██╔════╝██╔══██╗██╔══██╗██╔════╝██║  ██║
+██║     ██║   ██║███████╗█████╗  ███████║██████╔╝██║     ███████║
+██║     ██║   ██║╚════██║██╔══╝  ██╔══██║██╔══██╗██║     ██╔══██║
+╚██████╗╚██████╔╝███████║███████╗██║  ██║██║  ██║╚██████╗██║  ██║
+ ╚═════╝ ╚═════╝ ╚══════╝╚══════╝╚═╝  ╚═╝╚═╝  ╚═╝ ╚═════╝╚═╝  ╚═╝
+```
 
-A ready-to-copy scaffold for research projects using **Obsidian** + **Claude Code**.
+**Co-research with AI.** A ready-to-clone scaffold for research projects built around a simple idea: AI loses all context when a session ends. Cosearch solves this by turning Obsidian into a structured external memory store that both you and the AI read and write together.
 
-Clone this repo, fill in your project name, and you have a working knowledge management + AI assistant setup from day one.
+Clone this repo, launch Claude Code, and the AI walks you through the rest.
+
+---
+
+## The problem this solves
+
+AI is a powerful research partner — but it forgets everything between sessions. Without a shared memory, every session starts from scratch: re-explaining the project, re-establishing context, re-recovering where you left off.
+
+Cosearch treats the Obsidian vault not just as a note-taking tool, but as the AI's long-term memory. Every session end writes a structured log. Every session start reads it back. Over time, the AI accumulates the context needed to work as a genuine collaborator.
 
 ---
 
@@ -10,7 +25,7 @@ Clone this repo, fill in your project name, and you have a working knowledge man
 
 ### Obsidian vault (`obsidian/`)
 
-Pre-configured folder structure for research note-taking:
+Structured knowledge base readable by both human and AI:
 
 | Folder | Purpose |
 |--------|---------|
@@ -24,13 +39,13 @@ Pre-configured folder structure for research note-taking:
 | `70_Reviews/` | Deep research results (`DR`) and code reviews (`REV`) |
 | `99_Assets/` | Binary files only (images, PDFs, HTMLs) |
 
-Comes with the **Dataview** community plugin pre-installed and core plugins configured.
+Comes with **Dataview** pre-installed and graph view color-coded by folder.
 
 ### Claude Code setup (`.claude/`)
 
 **Skills:**
 - `session-wrap` — End-of-session ritual: writes an EXP note, updates project status in Obsidian, and syncs the Claude memory snapshot
-- `organize-deepresearch` — Absorbs a deep research `.md` file into the existing note structure (literature notes, methodology updates, etc.) rather than creating a separate summary doc
+- `organize-deepresearch` — Absorbs a deep research `.md` file into the existing note structure rather than creating a separate summary doc
 - `obsidian-skills-main` — Obsidian markdown, canvas, bases, and CLI helpers
 
 **Stop hook** (`check_memory_update.py`):
@@ -48,30 +63,44 @@ Starter `MEMORY.md` index for Claude's persistent project memory (stored at `~/.
 ## Getting started
 
 ```bash
-# 1. Copy the template
-cp -r research-project-template my-new-project
-cd my-new-project
+# 1. Clone
+git clone https://github.com/dkfmaekdnjfk/Cosearch.git my-project
+cd my-project
 
-# 2. Start a fresh git history
-rm -rf .git
-git init
+# 2. Fresh git history
+rm -rf .git && git init
 
-# 3. Fill in your project name and paths
-#    Edit CLAUDE.md — replace [Project Name] and path placeholders
+# 3. Open obsidian/ as a new vault in Obsidian
 
-# 4. Open obsidian/ as a new vault in Obsidian
-
-# 5. Launch Claude Code in the project root
+# 4. Launch Claude Code — it handles the rest
 claude
 ```
+
+On first launch, Claude reads `obsidian/00_Meta/START_HERE.md` and walks you through the remaining setup.
+
+---
+
+## Daily workflow
+
+| When | What |
+|------|------|
+| Session start | "오늘 뭐하지?" — Claude reads status and picks up where you left off |
+| Got deep research results | `/organize-deepresearch` — absorbs into vault |
+| Session end | `/session-wrap` — logs the session, updates memory |
 
 ---
 
 ## Key conventions
 
-- **EXP notes**: `EXP YYMMDD 세션주제.md` in `50_Experiments/`
-- **Literature notes**: `저자연도_키워드.md` in `10_Literature/`
-- **Deep research files**: drop in `70_Reviews/` as `DR YYMMDD 주제.md`, then run `/organize-deepresearch`
-- **Session wrap**: run `/session-wrap` (or say "마무리하자") at the end of every session
+- **EXP notes**: `EXP YYMMDD topic.md` in `50_Experiments/`
+- **Literature notes**: `Author YYYY keyword.md` in `10_Literature/`
+- **Deep research files**: drop in `70_Reviews/` as `DR YYMMDD topic.md`, then `/organize-deepresearch`
 
-See `obsidian/00_Meta/CONVENTIONS.md` for the full note format reference.
+See `obsidian/00_Meta/CONVENTIONS.md` for the full format reference.
+
+---
+
+## License
+
+MIT — see [LICENSE](LICENSE).
+`obsidian-skills-main` by [@kepano](https://github.com/kepano), also MIT.
