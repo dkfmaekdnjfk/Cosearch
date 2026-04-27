@@ -6,8 +6,9 @@
 
 분석 현황: `memory/project_experiment_status.md` | Vault 규칙: `obsidian/00_Meta/CONVENTIONS.md`
 
-> **첫 세션이라면** — `obsidian/00_Meta/START_HERE.md`를 읽고 사용자에게 세팅 순서를 안내할 것.
-> 세팅 완료 여부는 이 줄을 삭제하거나 CLAUDE.md의 프로젝트 설명이 채워진 것으로 판단한다.
+> **온보딩 확인** — 세션 시작 시 `obsidian/00_Meta/START_HERE.md`의 `onboarded` 필드를 확인할 것.
+> `false`이면 파일을 읽고 사용자에게 세팅 순서를 안내한 뒤, 완료 시 `onboarded: true`로 업데이트한다.
+> `true`이면 이 과정을 건너뛴다.
 
 ---
 

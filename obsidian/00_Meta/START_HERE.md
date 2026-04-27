@@ -3,6 +3,7 @@ title: "START HERE"
 tags:
   - meta
   - onboarding
+onboarded: false
 date-created: YYYY-MM-DD
 ---
 
@@ -88,3 +89,7 @@ Claude가 자동으로:
 # 핵심 원칙 하나
 
 **세션 마무리를 건너뛰지 말 것.** 기록이 끊기면 다음 세션의 AI는 다시 처음부터 파악해야 한다. 5분짜리 `/session-wrap`이 다음 세션의 30분을 아껴준다.
+
+---
+
+> **Claude에게:** 위 세팅을 모두 완료했으면 이 파일 상단 frontmatter의 `onboarded: false`를 `onboarded: true`로 업데이트할 것.
