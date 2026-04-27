@@ -1,0 +1,43 @@
+{
+  "collapse-filter": true,
+  "search": "",
+  "showTags": true,
+  "showAttachments": true,
+  "hideUnresolved": false,
+  "showOrphans": true,
+  "collapse-color-groups": false,
+  "colorGroups": [
+    {
+      "query": "path:40_Projects  ",
+      "color": { "a": 1, "rgb": 14701138 }
+    },
+    {
+      "query": "path:10_Literature  ",
+      "color": { "a": 1, "rgb": 14725458 }
+    },
+    {
+      "query": "path:20_Concepts  ",
+      "color": { "a": 1, "rgb": 5419488 }
+    },
+    {
+      "query": "path:30_Methodology  ",
+      "color": { "a": 1, "rgb": 5395168 }
+    },
+    {
+      "query": "path:70_Reviews  ",
+      "color": { "a": 1, "rgb": 14701233 }
+    }
+  ],
+  "collapse-display": false,
+  "showArrow": false,
+  "textFadeMultiplier": 0,
+  "nodeSizeMultiplier": 1,
+  "lineSizeMultiplier": 1,
+  "collapse-forces": true,
+  "centerStrength": 0.518713248970312,
+  "repelStrength": 10,
+  "linkStrength": 1,
+  "linkDistance": 250,
+  "scale": 0.18462326225858033,
+  "close": true
+}
