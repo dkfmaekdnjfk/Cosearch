@@ -46,7 +46,8 @@
 
 ## 스킬
 
-| 스킬 | 용도 |
-|------|------|
-| `session-wrap` | 세션 마무리 — EXP 노트 + 메모리 업데이트 |
-| `organize-deepresearch` | DR 파일 → Obsidian 흡수 |
+| 스킬 | 위치 | 용도 |
+|------|------|------|
+| `session-wrap` | `.claude/skills/` | 세션 마무리 — EXP 노트 + 메모리 업데이트 |
+| `organize-deepresearch` | `.claude/skills/` | DR 파일 → Obsidian 흡수 |
+| `write-critical-review` | `.agents/skills/` | 프로젝트 파일을 읽고 peer review 수준의 비판적 리뷰 작성 |
