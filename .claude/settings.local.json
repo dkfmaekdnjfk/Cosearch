@@ -1,0 +1,30 @@
+{
+  "permissions": {
+    "allow": [
+      "WebSearch",
+      "WebFetch(domain:pmc.ncbi.nlm.nih.gov)",
+      "WebFetch(domain:www.ncbi.nlm.nih.gov)",
+      "WebFetch(domain:www.nature.com)",
+      "WebFetch(domain:www.biorxiv.org)",
+      "WebFetch(domain:elifesciences.org)",
+      "WebFetch(domain:journals.plos.org)",
+      "WebFetch(domain:www.frontiersin.org)",
+      "mcp__3af01920-7f15-4274-9d3d-222df3a35f67__search_articles",
+      "mcp__3af01920-7f15-4274-9d3d-222df3a35f67__get_article_metadata",
+      "mcp__3af01920-7f15-4274-9d3d-222df3a35f67__get_full_text_article"
+    ]
+  },
+  "hooks": {
+    "Stop": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python .claude/hooks/check_memory_update.py"
+          }
+        ]
+      }
+    ]
+  }
+}
