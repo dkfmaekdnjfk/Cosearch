@@ -49,6 +49,7 @@ Comes with **Dataview** pre-installed and graph view color-coded by folder.
 - `session-wrap` — End-of-session ritual: writes an EXP note, updates project status in Obsidian, and syncs the Claude memory snapshot
 - `organize-deepresearch` — Absorbs a deep research `.md` file into the existing note structure rather than creating a separate summary doc
 - `advisor` — Spawns an isolated agent to diagnose research direction against `ADVISOR.md` principles (layer 1→2→3) and saves the review to `08_Reviews/`
+- `write-deepresearch-prompt` — Writes a self-contained prompt doc to hand off to an external AI (Claude.ai deep research etc.); never executes the search itself
 - `obsidian-skills-main` — Obsidian markdown, canvas, bases, and CLI helpers
 
 **Stop hook** (`check_memory_update.py`):
@@ -90,6 +91,7 @@ On first launch, Claude reads `obsidian/00_Meta/START_HERE.md` and walks you thr
 | Session start | "오늘 뭐하지?" — Claude reads status and picks up where you left off |
 | Got deep research results | `/organize-deepresearch` — absorbs into vault |
 | Need a research direction check | `/advisor` — isolated agent diagnoses direction against ADVISOR.md |
+| Need to delegate a literature search | `/write-deepresearch-prompt` — writes the handoff doc, never searches itself |
 | Session end | `/session-wrap` — logs the session, updates memory |
 
 ---
