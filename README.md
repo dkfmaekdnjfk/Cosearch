@@ -51,6 +51,7 @@ Comes with **Dataview** pre-installed and graph view color-coded by folder.
 - `advisor` — Spawns an isolated agent to diagnose research direction against `ADVISOR.md` principles (layer 1→2→3) and saves the review to `08_Reviews/`
 - `write-deepresearch-prompt` — Writes a self-contained prompt doc to hand off to an external AI (Claude.ai deep research etc.); never executes the search itself
 - `teach` — Turns a concept you don't understand into a structured note in `20_Concepts/`; never explains in chat
+- `sync-from-cosearch` — Fetches skill updates from this template repo and applies them selectively; warns at session start if more than 14 days since last sync
 - `obsidian-skills-main` — Obsidian markdown, canvas, bases, and CLI helpers
 
 **Stop hook** (`check_memory_update.py`):

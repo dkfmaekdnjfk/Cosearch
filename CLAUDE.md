@@ -10,6 +10,10 @@
 > `false`이면 파일을 읽고 사용자에게 세팅 순서를 안내한 뒤, 완료 시 `onboarded: true`로 업데이트한다.
 > `true`이면 이 과정을 건너뛴다.
 
+> **Cosearch 동기화 확인** — 세션 시작 시 `.claude/skills/sync-from-cosearch/last_sync.txt`를 확인할 것.
+> 파일이 없거나 마지막 동기화로부터 14일 이상 지났으면 사용자에게 안내:
+> "Cosearch 템플릿 업데이트 확인이 14일 이상 지났습니다. `/sync-from-cosearch`를 실행해보세요."
+
 ---
 
 ## 핵심 경로
