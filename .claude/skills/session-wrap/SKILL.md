@@ -58,6 +58,28 @@ date-modified: YYYY-MM-DD
 [못 끝낸 것, 다음에 해야 할 것]
 ```
 
+### 코드를 실행한 세션이라면 아래 섹션도 추가
+
+```markdown
+## Code
+- `code/scripts/run_example.py`
+
+## Input
+- `data/processed/...` *(local only)*
+
+## Command
+```bash
+PYTHONPATH=code python code/scripts/run_example.py --config ...
+```
+
+## Output
+- Tracked: `results/final/summary.png`
+- Local only: `results/tmp/YYMMDD_topic/`
+
+## Result
+[주요 수치, 그래프 해석, 결론]
+```
+
 ---
 
 ## Step 2: PROJECT_STATUS.md 업데이트 (Obsidian)
@@ -147,7 +169,19 @@ date-modified: YYYY-MM-DD
 
 ---
 
-## Step 5: 코드 변경 시 git commit & push
+## Step 5: 대용량 파일 생성 시 manifest 업데이트
+
+이 세션에서 `data/processed/`, `results/tmp/` 등 Git 밖 대용량 파일·폴더가 새로 생겼다면:
+
+1. `artifacts/manifest.yaml`에 항목 추가
+   - `local_path`, `note`, `created_by` 기록
+2. EXP 노트 Output 섹션에 경로 명시 (이미 위에서 작성)
+
+파일이 없으면 건너뜀.
+
+---
+
+## Step 7: 코드 변경 시 git commit & push
 
 세션 중 코드 또는 스킬 파일을 수정했다면 반드시 커밋 후 push.
 
@@ -162,12 +196,13 @@ git push
 
 ---
 
-## Step 6: 완료 확인
+## Step 8: 완료 확인
 
 사용자에게 다음을 보고:
 - ✅ EXP 노트: `50_Experiments/EXP YYMMDD XXX.md` 생성/업데이트
 - ✅ Obsidian STATUS: `00_Meta/PROJECT_STATUS.md` 업데이트
 - ✅ Claude 메모리: `project_experiment_status.md` XX줄로 업데이트
 - ✅ HUMAN_CORRECTIONS: 교정 사례 있으면 `00_Meta/HUMAN_CORRECTIONS.md` 업데이트
+- ✅ Manifest: 대용량 파일 생겼으면 `artifacts/manifest.yaml` 업데이트
 - ✅ Git push: 코드/스킬 변경 시 완료 여부
 - 다음 세션 첫 번째 할 일: [내용]

@@ -1,0 +1,39 @@
+# artifacts/manifest.yaml
+#
+# Git 밖에 있는 대용량 파일·폴더의 위치와 생성 방법을 기록한다.
+# 파일 자체는 Git에 없지만, 여기서 찾는 방법을 알 수 있다.
+#
+# 항목 형식:
+#   local_path:    로컬 경로 (레포 루트 기준)
+#   storage:       저장 위치 (local / nas / external)
+#   note:          설명
+#   created_by:    생성 스크립트 또는 방법
+#   sha256:        체크섬 (알 경우)
+#
+# 새 대용량 파일이 생길 때마다 항목을 추가할 것.
+
+# ============================================================
+# 예시 항목 (실제 프로젝트에 맞게 채워 넣을 것)
+# ============================================================
+
+# datasets:
+#   raw_data:
+#     local_path: data/raw/dataset.csv
+#     storage: local
+#     note: "원본 데이터. Git 추적 금지."
+#     created_by: "수동 다운로드"
+#     sha256: ""
+#
+# processed:
+#   preprocessed_sessions:
+#     local_path: data/processed/sessions/
+#     storage: local
+#     note: "전처리 완료 세션 데이터."
+#     created_by: "code/scripts/preprocess.py"
+#
+# results:
+#   run_260514:
+#     local_path: results/tmp/260514_topic/
+#     storage: local
+#     note: "EXP 260514 분석 임시 출력물."
+#     created_by: "code/scripts/run_analysis.py"

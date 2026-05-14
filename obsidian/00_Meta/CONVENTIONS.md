@@ -114,6 +114,64 @@ python code/scripts/run_example.py --config code/pipelines/example.yaml
 
 ---
 
+## 코드·데이터·결과물 추적 규칙
+
+### Git 추적 대상
+
+| 종류 | 경로 |
+|------|------|
+| 분석 코드 | `code/` (`legacy/` 제외) |
+| Obsidian 노트 | `obsidian/` |
+| 폴더 설명 문서 | `code/README.md`, `data/README.md`, `results/README.md` |
+| 대용량 파일 목록 | `artifacts/manifest.yaml` |
+| 최종 결과물 | `results/final/` |
+| 예시 데이터 | `data/examples/` |
+
+### Git 제외 대상 (로컬 전용)
+
+| 종류 | 경로 |
+|------|------|
+| 원본 데이터 | `data/raw/` |
+| 전처리 데이터 | `data/processed/` |
+| 중간·임시 결과물 | `results/logs/`, `results/tmp/` |
+
+### 새 대용량 파일이 생길 때 할 일
+
+1. **`artifacts/manifest.yaml`에 항목 추가** — `local_path`, `note`, `created_by` 기록
+2. **관련 EXP 노트에 경로 기록** — Output/Command 섹션에 명시
+3. `results/final/`에 넣을 최종본만 Git에 추가
+
+---
+
+## EXP 노트 코드 실행 섹션
+
+코드를 실행한 세션의 EXP 노트에 추가:
+
+```markdown
+## Code
+- `code/scripts/run_example.py`
+
+## Input
+- `data/processed/...` *(local only)*
+
+## Command
+```bash
+PYTHONPATH=code python code/scripts/run_example.py --config ...
+```
+
+## Output
+- Tracked: `results/final/summary.png`
+- Local only: `results/tmp/YYMMDD_topic/`
+
+## Result
+주요 결과 요약.
+
+## Next
+다음 단계.
+```
+
+---
+
 ## Literature 노트 frontmatter
 
 ```yaml
