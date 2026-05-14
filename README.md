@@ -25,6 +25,27 @@ Cosearch treats the Obsidian vault not just as a note-taking tool, but as the AI
 
 ## What's included
 
+### Code / Data / Results (`code/`, `data/`, `results/`)
+
+Research-oriented codebase structure:
+
+| Folder | Role | Git |
+|--------|------|-----|
+| `code/scripts/` | Run scripts | ✅ |
+| `code/pipelines/` | Pipeline configs (*.yaml) | ✅ |
+| `code/notebooks/` | Exploratory notebooks | ✅ |
+| `code/cosearch/` | Cosearch framework package | ✅ |
+| `data/examples/` | Small sample data | ✅ |
+| `data/raw/` | Raw input data | ❌ local only |
+| `data/processed/` | Preprocessed data | ❌ local only |
+| `results/final/` | Final figures & tables | ✅ |
+| `results/logs/` | Run logs | ❌ local only |
+| `results/tmp/` | Intermediate outputs | ❌ local only |
+
+`artifacts/manifest.yaml` tracks all large local files outside Git — path, origin, and how to recreate them.
+
+Every analysis session links code → data → results through an EXP note in `obsidian/50_Experiments/`.
+
 ### Obsidian vault (`obsidian/`)
 
 Structured knowledge base readable by both human and AI:
@@ -53,6 +74,8 @@ Comes with **Dataview** pre-installed and graph view color-coded by folder.
 - `teach` — Turns a concept you don't understand into a structured note in `20_Concepts/`; never explains in chat
 - `sync-from-cosearch` — Fetches skill updates from this template repo and applies them selectively; warns at session start if more than 14 days since last sync
 - `obsidian-skills-main` — Obsidian markdown, canvas, bases, and CLI helpers
+
+**`session-wrap`** now includes code execution tracking: when you run an analysis, the EXP note records the script, input data, command, and output paths — linking every result back to the code that made it. New large local files get logged to `artifacts/manifest.yaml`.
 
 **Stop hook** (`check_memory_update.py`):
 Fires automatically when Claude Code exits. Warns if today's EXP note is missing, the status file is stale, or the memory snapshot exceeds 50 lines.
