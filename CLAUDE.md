@@ -20,8 +20,12 @@
 
 | 역할 | 경로 |
 |------|------|
-| 에이전트 스크립트 | `agent/` |
-| 결과물 | `results/` |
+| 분석 스크립트 | `code/scripts/` |
+| 파이프라인 설정 | `code/pipelines/` |
+| 노트북 | `code/notebooks/` |
+| Cosearch 패키지 | `code/cosearch/` |
+| 예시 데이터 | `data/examples/` |
+| 최종 결과물 | `results/final/` |
 | Obsidian vault | `obsidian/` |
 | 메모리 | `~/.claude/projects/[인코딩된-경로]/memory/` |
 

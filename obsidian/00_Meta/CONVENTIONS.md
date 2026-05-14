@@ -54,6 +54,66 @@ date-modified: YYYY-MM-DD
 
 ---
 
+## 코드·데이터·결과물 구조
+
+```text
+code/
+  cosearch/       Cosearch 프레임워크 패키지 (경로 관리, 유틸리티)
+  scripts/        실행 스크립트 (run_*.py, preprocess_*.py 등)
+  pipelines/      파이프라인 설정 파일 (*.yaml)
+  notebooks/      탐색적 분석용 Jupyter 노트북
+  tests/          테스트 코드
+
+data/
+  examples/       Git 추적 가능한 소형 예시 데이터
+  raw/            원본 데이터 (Git 제외, 로컬 전용)
+  processed/      전처리 결과 (Git 제외, 로컬 전용)
+
+results/
+  final/          최종 결과물 (Git 추적 가능 — 논문/보고서용 그림·표)
+  logs/           실행 로그 (Git 제외)
+  tmp/            임시 출력 (Git 제외)
+```
+
+### Tracking policy
+
+Git tracks: `code/`, `obsidian/`, `data/examples/`, `results/final/`, configs, small samples.
+
+Git does NOT track: `data/raw/`, `data/processed/`, `results/logs/`, `results/tmp/`, large binaries, caches, secrets.
+
+Every untracked artifact that matters must be referenced from the relevant EXP note with path, command, source, and checksum when possible.
+
+---
+
+## EXP 노트 코드 실행 섹션
+
+코드를 실행한 세션의 EXP 노트에는 다음 섹션을 추가한다.
+
+```markdown
+## Code
+- `code/scripts/run_example.py`
+
+## Input
+- `data/raw/dataset.csv` *(local only)*
+
+## Command
+```bash
+python code/scripts/run_example.py --config code/pipelines/example.yaml
+```
+
+## Output
+- Tracked: `results/final/summary.csv`
+- Local only: `results/logs/run_260514.log`
+
+## Result
+주요 결과 요약.
+
+## Next
+다음 단계.
+```
+
+---
+
 ## Literature 노트 frontmatter
 
 ```yaml

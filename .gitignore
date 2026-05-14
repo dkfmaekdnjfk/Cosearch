@@ -1,0 +1,115 @@
+# agent
+.agent/
+.claude/*
+!.claude/skills/
+!.claude/settings.local.json
+.cursor/
+
+# Data folders (local only)
+data/raw/
+data/processed/
+!data/examples/
+!data/examples/**
+
+# Large array / model files
+*.npy
+*.npz
+*.mat
+*.h5
+*.hdf5
+*.parquet
+*.pkl
+*.pt
+*.pth
+*.ckpt
+*.safetensors
+*.onnx
+*.feather
+*.joblib
+
+# Results — intermediate & large outputs (local only)
+results/logs/
+results/tmp/
+results/runs/
+# Keep final artifacts
+!results/final/
+!results/final/**
+
+# Models / checkpoints
+models/
+checkpoints/
+
+# Common Python cache files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Distribution / packaging
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Unit test / coverage reports
+htmlcov/
+.tox/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+.hypothesis/
+.pytest_cache/
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# Environments
+.env
+.venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+# pyenv
+.python-version
+
+# Obsidian local state
+obsidian/.obsidian/workspace*.json
+obsidian/.obsidian/cache/
+obsidian/.trash/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Logs
+*.log
+pip-log.txt

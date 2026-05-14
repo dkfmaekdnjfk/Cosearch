@@ -29,89 +29,18 @@ description: |
 
 ---
 
-## Step 2: 새 논문 → 개별 literature 노트 생성
+## Step 2: 새 논문 → PubMed 조회 (메타데이터 확보)
 
-각 논문마다 하나의 `.md` 파일을 생성한다. 파일명 형식: `저자연도 주제키워드.md`
-
-### PubMed 조회 (병렬 처리)
-여러 논문이 있을 경우 PubMed MCP tool을 병렬로 호출해 저자·저널·DOI·PMID를 한 번에 확인한다.
+각 논문마다 PubMed MCP tool을 병렬로 호출해 저자·저널·DOI·PMID·PMCID를 한 번에 확인한다.
 - PMID 있으면 `get_article_metadata` 직접 사용
 - DOI만 있으면 `search_articles`에 `DOI[doi]`로 검색
 - 저자/제목만 있으면 `search_articles`로 검색
 
-### 표준 frontmatter
-```yaml
----
-title: "논문 제목"
-tags:
-  - literature
-  - [주제 태그들]
-  - [방법론 태그: 예) population-coding / pca / time-series 등]
-citekey: 저자연도_키워드
-authors: "저자1, 저자2, ..."
-year: YYYY
-journal: "저널명"
-doi: "10.xxxx/xxxxx"
-pmid: "XXXXXXXX"
-pmcid: "PMCXXXXXXXX"   # 있을 경우만
-url: "https://..."
-status: unread
-importance: 3          # 1~5
-aliases:
-  - 저자연도
-date-created: YYYY-MM-DD
-date-modified: YYYY-MM-DD
----
-```
-
-### 노트 본문 구조
-```markdown
-# 저자 연도 — 한국어 제목 요약
+→ **노트는 아직 만들지 않는다.** Step 2.5에서 다운로드 결과에 따라 생성한다.
 
 ---
 
-## 한 줄 요약
-[논문의 핵심을 한 문장으로]
-
----
-
-## 핵심 내용
-[논문이 실제로 보여주는 것: 실험 조건, 결과 수치, 방법론]
-
----
-
-## 우리 연구와의 관계
-
-- **적용 맥락**: [우리 분석의 어떤 부분을 지지/반박/보완하는가]
-- **근거 수준**: (A) 직접 확인 / (B) 문헌상 추론 / (C) 가설
-- **한계**: [이 논문만으로 주장할 수 없는 것]
-
----
-
-## 관련 노트
-- [[관련 방법론 노트]] — 설명
-- [[관련 논문]] — 관련 내용
-```
-
-### 미확인 사항 처리
-저자·저널·수치 등이 확인되지 않으면 `[!warning]` callout으로 명시하고 진행한다.
-확인 후에는 callout을 제거한다.
-
----
-
-## Step 2.5: 새 논문 → 메타데이터 기록 + 원문 다운로드 (`99_Assets/papers/`)
-
-### ⚠️ 핵심 원칙: 메타데이터 즉시 기록
-
-**PubMed 조회로 PMID/PMCID를 찾는 순간, 노트 frontmatter에 즉시 기록한다.**
-나중에 다시 조회하지 않아도 되도록. 아래 필드를 항상 채운다:
-
-```yaml
-pmid: "XXXXXXXX"
-pmcid: "PMCXXXXXXXX"    # PMC에 있는 경우
-paper_file: "저자연도_키워드.html"
-paper_status: full      # 다운로드 완료 시
-```
+## Step 2.5: 다운로드 시도 → 노트 생성
 
 ### ⚠️ 핵심 원칙: Claude가 직접 HTML을 쓰면 안 된다
 
@@ -129,32 +58,117 @@ curl -s -L \
   -o "obsidian/99_Assets/papers/저자연도_키워드.html"
 ```
 
-**파일명 규칙**: `저자연도_키워드.html` 또는 `저자연도_키워드.pdf`
-
 ### 다운로드 우선순위
 
 1. **PMC ID 있음** → curl로 PMC HTML 직접 다운로드
-   - URL: `https://www.ncbi.nlm.nih.gov/pmc/articles/PMCXXXXXXXX/`
-   - CAPTCHA 차단 시(~21KB): 5초 대기 후 재시도 또는 다른 Accept 헤더 추가
-   - 성공 기준: 파일 크기 > 50KB
+   - 성공 기준: 파일 크기 > 50KB (`wc -c`로 확인)
+   - CAPTCHA 차단 시(~21KB): 5초 대기 후 재시도
 
 2. **PMC 없음, 오픈 액세스 DOI** → curl로 출판사 URL 직접 다운로드
-   - eLife: `https://elifesciences.org/articles/XXXXX`
-   - Frontiers: `https://www.frontiersin.org/articles/DOI/full`
-   - PLOS: `https://journals.plos.org/...article?id=DOI`
-   - bioRxiv: `https://www.biorxiv.org/content/DOI.full`
+   - eLife, Frontiers, PLOS, bioRxiv 등 공개 URL 사용
 
-3. **유료 저널** → 자동 다운로드 불가. 노트에 `[!warning]` 표시 후 사용자에게 수동 요청:
-   ```yaml
-   paper_file: "NOT_AVAILABLE — 기관 접속 필요"
-   paper_status: missing
-   ```
+3. **유료 저널** → 자동 다운로드 불가
 
-### 다운로드 후 검증
+### 다운로드 결과에 따른 노트 생성 분기
 
-```bash
-wc -c 저자연도_키워드.html   # 50KB 이상이어야 정상
-head -3 저자연도_키워드.html  # <!DOCTYPE html> 형식이어야 원본
+파일명 형식: `저자연도 주제키워드.md` | 저장: `obsidian/10_Literature/`
+
+---
+
+#### Case 1 — 전문 다운로드 성공
+
+```yaml
+---
+title: "논문 제목"
+tags:
+  - literature
+  - [주제 태그들]
+citekey: 저자연도_키워드
+authors: "저자1, 저자2, ..."
+year: YYYY
+journal: "저널명"
+doi: "10.xxxx/xxxxx"
+pmid: "XXXXXXXX"
+pmcid: "PMCXXXXXXXX"
+url: "https://..."
+paper_file: "저자연도_키워드.html"
+paper_status: full
+status: unread
+importance: 3
+aliases:
+  - 저자연도
+date-created: YYYY-MM-DD
+date-modified: YYYY-MM-DD
+---
+```
+
+본문: **전문에서 직접 확인한 내용만** 작성.
+
+```markdown
+# 저자 연도 — 한국어 제목 요약
+
+## 한 줄 요약
+[논문의 핵심을 한 문장으로]
+
+## 핵심 내용
+[논문이 실제로 보여주는 것: 실험 조건, 결과 수치, 방법론]
+
+## 우리 연구와의 관계
+- **적용 맥락**: [우리 분석의 어떤 부분을 지지/반박/보완하는가]
+- **근거 수준**: (A) 직접 확인
+- **한계**: [이 논문만으로 주장할 수 없는 것]
+
+## 관련 노트
+- [[관련 방법론 노트]] — 설명
+```
+
+---
+
+#### Case 2 — 전문 없음, abstract만 있음
+
+frontmatter에 `paper_status: abstract_only` 기재.
+본문 상단에 callout 삽입 후 abstract 기반으로 채운다:
+
+```markdown
+# 저자 연도 — 한국어 제목 요약
+
+> [!note] abstract 기반
+> 전문 미확인. 아래 내용은 PubMed abstract에서 추출. 전문 확인 전 최대 (B) 수준.
+
+## 한 줄 요약
+[abstract에서 파악한 핵심]
+
+## 핵심 내용
+[abstract에서 확인 가능한 것만]
+
+## 우리 연구와의 관계
+- **적용 맥락**: [abstract 기반 추정]
+- **근거 수준**: (B) abstract 기반
+- **한계**: 전문 확인 전 클레임 사용 불가
+```
+
+---
+
+#### Case 3 — 유료 저널, 다운로드 불가
+
+파일명 앞에 `[미확인] ` 접두어: `[미확인] 저자연도 키워드.md`
+
+frontmatter:
+```yaml
+paper_file: "NOT_AVAILABLE — 기관 접속 필요"
+paper_status: missing
+```
+
+본문:
+```markdown
+# [미확인] 저자 연도 — 제목
+
+> [!warning] 전문 미확인
+> 기관 접속 후 직접 확인 필요. 아래 내용은 딥리서치 요약 기반이며 검증되지 않았다.
+
+## 우리 연구와의 관계
+- **적용 맥락**: [딥리서치 요약 기반 — 미확인]
+- **근거 수준**: (C) 가설
 ```
 
 ---
