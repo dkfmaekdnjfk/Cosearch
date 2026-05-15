@@ -1,6 +1,6 @@
 ---
 name: 명명 규칙
-description: Obsidian 파일명 접두사 및 코드 파일 명명 규칙
+description: Obsidian 파일명 접두사, 코드 파일 명명 규칙, 결과물 폴더 구조, legacy 정의
 type: reference
 ---
 
@@ -29,3 +29,44 @@ type: reference
 
 **날짜는 topic 뒤에**: 파일은 주제로 검색하고, 날짜는 버전 식별용.
 EXP 노트와 스크립트 날짜가 대응되어야 한다 (`EXP 260515 ...` ↔ `*_260515.py`).
+
+---
+
+## 결과물 폴더 구조
+
+```
+results/runs/
+  YYMM/                    ← 월 단위 그룹
+    YYMMDD_topic/          ← 날짜_주제 (날짜 먼저)
+      figures/
+      *.csv
+      *.pkl
+```
+
+예: `results/runs/2605/260515_pca_quiet_traj/`
+
+| 폴더 | 용도 | Git |
+|------|------|-----|
+| `results/runs/` | 신규 스크립트 출력 | ❌ 로컬 전용 |
+| `results/final/` | 논문·발표용 최종 선별 figure | ✅ 추적 |
+| `results/legacy/` | 이전 구조 아카이브 (읽기 전용) | ❌ 로컬 전용 |
+
+---
+
+## 설정 파일
+
+공유 입력 파일(세션 설정, 파라미터 JSON 등)은 `config/`에 저장 (git 추적).
+
+```
+config/
+  sessions/    ← 세션 설정 JSON
+  params/      ← 분석 파라미터
+```
+
+---
+
+## Legacy 폴더 정의
+
+`code/legacy/`, `results/legacy/`, `data/legacy/`는 **이전 구조의 파일을 일괄 이동한 것**.
+"사용하지 않는다"는 의미가 아님 — 현재도 참조·실행 가능한 코드/데이터 포함.
+Legacy 스크립트를 재사용하려면 `code/scripts/`에 날짜 포함 이름으로 복사 후 정식 등록.

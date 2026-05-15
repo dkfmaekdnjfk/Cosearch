@@ -6,4 +6,4 @@
 메모리 타입: user / feedback / project / reference
 -->
 
-- [명명 규칙](naming_conventions.md) — Obsidian 파일명 접두사(EXP/MTG/DR/REV) 및 코드 파일 명명 규칙(topic_YYMMDD)
+- [명명 규칙](naming_conventions.md) — Obsidian 파일명 접두사, 코드 명명 규칙, 결과물 폴더 구조, legacy 정의
