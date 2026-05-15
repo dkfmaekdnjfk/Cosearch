@@ -5,3 +5,5 @@
 
 메모리 타입: user / feedback / project / reference
 -->
+
+- [명명 규칙](naming_conventions.md) — Obsidian 파일명 접두사(EXP/MTG/DR/REV) 및 코드 파일 명명 규칙(topic_YYMMDD)

@@ -60,7 +60,7 @@ date-modified: YYYY-MM-DD
 
 ### 코드를 실행한 세션이라면 아래 섹션도 추가
 
-```markdown
+````markdown
 ## Code
 - `code/scripts/run_example.py`
 
@@ -78,7 +78,7 @@ PYTHONPATH=code python code/scripts/run_example.py --config ...
 
 ## Result
 [주요 수치, 그래프 해석, 결론]
-```
+````
 
 ---
 

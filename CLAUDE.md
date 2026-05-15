@@ -4,7 +4,7 @@
 
 [프로젝트 설명을 여기에 작성]
 
-분석 현황: `memory/project_experiment_status.md` | Vault 규칙: `obsidian/00_Meta/CONVENTIONS.md`
+분석 현황: `memory/project_experiment_status.md` | 명명 규칙: `memory/naming_conventions.md`
 
 > **온보딩 확인** — 세션 시작 시 `obsidian/00_Meta/START_HERE.md`의 `onboarded` 필드를 확인할 것.
 > `false`이면 파일을 읽고 사용자에게 세팅 순서를 안내한 뒤, 완료 시 `onboarded: true`로 업데이트한다.
@@ -18,14 +18,46 @@
 
 ## 핵심 경로
 
+### 코드
+
 | 역할 | 경로 |
 |------|------|
 | 분석 스크립트 | `code/scripts/` |
 | 파이프라인 설정 | `code/pipelines/` |
 | 노트북 | `code/notebooks/` |
 | Cosearch 패키지 | `code/cosearch/` |
+| 테스트 | `code/tests/` |
+| 기존 코드 (legacy) | `code/legacy/` |
+
+### 데이터
+
+| 역할 | 경로 |
+|------|------|
 | 예시 데이터 | `data/examples/` |
-| 최종 결과물 | `results/final/` |
+| 원본 데이터 | `data/raw/` (로컬) |
+| 전처리 데이터 | `data/processed/` (로컬) |
+
+### 결과물
+
+| 역할 | 경로 |
+|------|------|
+| 신규 스크립트 출력 | `results/runs/YYMM/YYMMDD_topic/` (로컬) |
+| 최종 결과물 (git 추적) | `results/final/` |
+| cosearch 이전 아카이브 | `results/legacy/` (로컬) |
+| 실행 로그 | `results/logs/` (로컬) |
+| 임시 출력 | `results/tmp/` (로컬) |
+
+### 설정
+
+| 역할 | 경로 |
+|------|------|
+| 세션 설정 | `config/sessions/` |
+| 분석 파라미터 | `config/params/` |
+
+### 기타
+
+| 역할 | 경로 |
+|------|------|
 | Obsidian vault | `obsidian/` |
 | 메모리 | `~/.claude/projects/[인코딩된-경로]/memory/` |
 
@@ -34,6 +66,8 @@
 ## ⚠️ 작업 진행 방식
 
 - **작업 전 반드시 확인** — 무엇을 할지 먼저 설명하고 승인받은 후 진행. "continue" 같은 말만으로 임의 판단해서 실행하지 말 것
+
+- **코드 파일 이동·재구조화 시** — `obsidian/00_Meta/START_HERE.md` > "코드 재구조화 안전 절차" 섹션을 반드시 따를 것
 
 ---
 

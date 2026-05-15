@@ -35,14 +35,26 @@ Research-oriented codebase structure:
 | `code/pipelines/` | Pipeline configs (*.yaml) | ✅ |
 | `code/notebooks/` | Exploratory notebooks | ✅ |
 | `code/cosearch/` | Cosearch framework package | ✅ |
+| `code/tests/` | Test code | ✅ |
+| `code/legacy/` | Pre-cosearch code archive | ❌ local only |
+| `config/sessions/` | Session config files | ✅ |
+| `config/params/` | Analysis parameters | ✅ |
 | `data/examples/` | Small sample data | ✅ |
 | `data/raw/` | Raw input data | ❌ local only |
 | `data/processed/` | Preprocessed data | ❌ local only |
+| `data/legacy/` | Pre-cosearch data archive | ❌ local only |
 | `results/final/` | Final figures & tables | ✅ |
+| `results/runs/` | Script outputs — `runs/YYMM/YYMMDD_topic/` | ❌ local only |
+| `results/legacy/` | Pre-cosearch results archive | ❌ local only |
 | `results/logs/` | Run logs | ❌ local only |
 | `results/tmp/` | Intermediate outputs | ❌ local only |
 
 `artifacts/manifest.yaml` tracks all large local files outside Git — path, origin, and how to recreate them.
+
+**새 대용량 파일이 생길 때 할 일:**
+1. `artifacts/manifest.yaml`에 항목 추가 — `local_path`, `note`, `created_by` 기록
+2. 관련 EXP 노트 Output 섹션에 경로 명시
+3. `results/final/`에 넣을 최종본만 Git에 추가
 
 Every analysis session links code → data → results through an EXP note in `obsidian/50_Experiments/`.
 
