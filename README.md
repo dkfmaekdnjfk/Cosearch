@@ -108,6 +108,13 @@ For template maintenance, keep the cloned repository's Git history and Cosearch 
 The “Fresh git history” step below applies to a new research project derived from the template.
 Use `sync-from-cosearch` to distribute changes or contribute explicitly requested common improvements.
 
+### Answer and writing gates
+
+Shared question checklists live in `obsidian/00_Meta/ANSWER_GATES.md` and
+`WRITE_GATES.md`. Claude hooks inject them before answers and vault writes;
+Codex reads the same notes directly. Hooks provide context without overriding permissions.
+Literature ingestion also checks metadata, attribution and supplementary evidence.
+
 ### Memory system (`memory/`)
 
 Starter `MEMORY.md` index for Claude's persistent project memory (stored at `~/.claude/projects/[encoded-path]/memory/`).
