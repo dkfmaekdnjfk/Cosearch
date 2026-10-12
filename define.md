@@ -5,6 +5,7 @@
 - advisor_principles: `ADVISOR.md`
 - claude_skills: `.claude/skills/`
 - agent_skills: `.agents/skills/`
+- glossary_file: `obsidian/00_Meta/GLOSSARY.md` (정의와 운영 절차의 정본)
 - template_vault: `obsidian/` (폴더 정의는 README.md)
 - memory_index_template: `memory/MEMORY.md` (실행 프로젝트의 메모리 정본과 구별)
 

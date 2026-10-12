@@ -9,5 +9,6 @@ Claude 전용 도구·훅은 현재 환경에서 같은 역할을 하는 도구�
 `obsidian/00_Meta/WRITE_GATES.md`도 읽는다. Claude 훅은 Codex에서 자동 실행되지 않는다.
 
 연구 판단에는 `ADVISOR.md`와 실제 현황·근거 원문을 확인한다.
+용어 작성·윤문에는 `obsidian/00_Meta/GLOSSARY.md`의 정의와 운영 절차를 적용한다.
 스킬·모듈 변경 전 해당 README.md와 define.md를 읽고, 수정 전후 파일을 다시 확인한다.
 프로젝트 고유 데이터·경로·결론을 공통 템플릿에 복사하지 않는다.

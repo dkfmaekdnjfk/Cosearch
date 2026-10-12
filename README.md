@@ -79,6 +79,7 @@ Comes with **Dataview** pre-installed and graph view color-coded by folder.
 ### Claude Code setup (`.claude/`)
 
 **Skills:**
+- `korean-copy` — Applies Korean wording rules to research and general documents; prefers original English technical terms
 - `session-wrap` — End-of-session ritual: writes an EXP note, updates project status in Obsidian, and syncs the Claude memory snapshot
 - `organize-deepresearch` — Absorbs a deep research `.md` file into the existing note structure rather than creating a separate summary doc
 - `advisor` — Spawns an isolated agent to diagnose research direction against `ADVISOR.md` principles (layer 1→2→3) and saves the review to `70_Reviews/`
@@ -114,6 +115,12 @@ Shared question checklists live in `obsidian/00_Meta/ANSWER_GATES.md` and
 `WRITE_GATES.md`. Claude hooks inject them before answers and vault writes;
 Codex reads the same notes directly. Hooks provide context without overriding permissions.
 Literature ingestion also checks metadata, attribution and supplementary evidence.
+
+### Glossary and terminology
+
+`obsidian/00_Meta/GLOSSARY.md` provides shared registration, collision checking,
+banned/watchlist distinction and terminology change procedures. Project term tables start empty.
+The `korean-copy` skill checks the same glossary before editing; original English technical terms take priority.
 
 ### Memory system (`memory/`)
 
