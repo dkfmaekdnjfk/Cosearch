@@ -9,7 +9,7 @@
 
 **Co-research with AI.** A ready-to-clone scaffold for research projects built around a simple idea: AI loses all context when a session ends. Cosearch solves this by turning Obsidian into a structured external memory store that both you and the AI read and write together.
 
-Clone this repo, launch Claude Code, and the AI walks you through the rest.
+Clone this repo and open it with Claude Code or Codex. `CLAUDE.md` contains the shared project instructions, and `AGENTS.md` connects Codex to the same instructions and memory.
 
 > **`ADVISOR.md`** (project root) defines how the AI behaves as a research advisor — it prioritizes research direction over execution details, and will tell you to scrap the whole approach if needed.
 
@@ -52,6 +52,7 @@ Research-oriented codebase structure:
 `artifacts/manifest.yaml` tracks all large local files outside Git — path, origin, and how to recreate them.
 
 **새 대용량 파일이 생길 때 할 일:**
+
 1. `artifacts/manifest.yaml`에 항목 추가 — `local_path`, `note`, `created_by` 기록
 2. 관련 EXP 노트 Output 섹션에 경로 명시
 3. `results/final/`에 넣을 최종본만 Git에 추가
@@ -64,7 +65,7 @@ Structured knowledge base readable by both human and AI:
 
 | Folder | Purpose |
 |--------|---------|
-| `00_Meta/` | Project status, conventions, correction log, understanding checklist |
+| `00_Meta/` | Project status, glossary, answer/writing gates, correction log, understanding checklist |
 | `10_Literature/` | Paper notes (citekey-based) |
 | `20_Concepts/` | Theory and concept notes |
 | `30_Methodology/` | Analysis pipeline and best practices |
@@ -79,22 +80,28 @@ Comes with **Dataview** pre-installed and graph view color-coded by folder.
 ### Claude Code setup (`.claude/`)
 
 **Skills:**
-- `korean-copy` — Applies Korean wording rules to research and general documents; prefers original English technical terms
-- `session-wrap` — End-of-session ritual: writes an EXP note, updates project status in Obsidian, and syncs the Claude memory snapshot
+
+- [`korean-copy`](.claude/skills/korean-copy/SKILL.md): Korean wording rules for research and general documents. Prefers original English technical terms and prohibits colloquial wording, pronouns, em dashes and corner brackets. Checks the shared glossary before editing.
+- `session-wrap`: Records each session in an EXP note, updates project status and the shared memory snapshot, and tracks code, inputs and outputs. The snapshot must stay within 50 lines and 2,000 Unicode characters.
 - `organize-deepresearch` — Absorbs a deep research `.md` file into the existing note structure rather than creating a separate summary doc
-- `advisor` — Spawns an isolated agent to diagnose research direction against `ADVISOR.md` principles (layer 1→2→3) and saves the review to `70_Reviews/`
+- `advisor`: Uses an isolated agent to assess research purpose, evidence and counterarguments against `ADVISOR.md`. The agent saves its assessment in `70_Reviews/` without reading previous advisor reviews.
+- [`write-review-prompt`](.claude/skills/write-review-prompt/SKILL.md): Prepares an external code, methods or paper review request with context and a reading list. Does not run the review.
 - `write-deepresearch-prompt` — Writes a self-contained prompt doc to hand off to an external AI (Claude.ai deep research etc.); never executes the search itself
 - `teach` — Turns a concept you don't understand into a structured note in `20_Concepts/`; never explains in chat
-- `sync-from-cosearch` — Fetches skill updates from this template repo and applies them selectively; warns at session start if more than 14 days since last sync
+- `sync-from-cosearch`: Compares skills and advisor principles with this template and applies selected updates. Also supports explicitly requested contributions of common improvements back to the template, excluding project-specific content.
 - `obsidian-skills-main` — Obsidian markdown, canvas, bases, and CLI helpers
+
+**Review skill (`.agents/skills/`):**
+
+- [`write-critical-review`](.agents/skills/write-critical-review/SKILL.md): Reads project files and writes a structured review of methods, results or a full paper.
 
 **`session-wrap`** now includes code execution tracking: when you run an analysis, the EXP note records the script, input data, command, and output paths — linking every result back to the code that made it. New large local files get logged to `artifacts/manifest.yaml`.
 
-**Stop hook** (`check_memory_update.py`):
-Fires automatically when Claude Code exits. Warns if today's EXP note is missing, the status file is stale, or the memory snapshot exceeds 50 lines.
+**Hooks:**
 
-**`settings.local.json`:**
-Pre-approved permissions for WebSearch, PubMed, and common academic publisher domains.
+`.claude/settings.json` registers the answer gate, writing gate and literature ingestion checks.
+`check_memory_update.py` provides an EXP/status/memory check; automatic Stop execution requires
+registration in local Claude settings. Codex applies the shared checklists and available checks directly.
 
 ### Claude and Codex collaboration
 
@@ -102,8 +109,8 @@ Pre-approved permissions for WebSearch, PubMed, and common academic publisher do
 Session logs distinguish separate sessions on the same date. The current memory snapshot is
 limited to 50 lines and 2,000 Unicode characters; claims retain pointers to original evidence.
 
-`write-review-prompt` prepares a self-contained external review request without running the review.
 Research values are checked against original numeric tables; graph digitization is excluded.
+Claims retain their conditions and source locations rather than relying on compressed memory summaries.
 
 For template maintenance, keep the cloned repository's Git history and Cosearch remote.
 The “Fresh git history” step below applies to a new research project derived from the template.
@@ -118,13 +125,20 @@ Literature ingestion also checks metadata, attribution and supplementary evidenc
 
 ### Glossary and terminology
 
-`obsidian/00_Meta/GLOSSARY.md` provides shared registration, collision checking,
-banned/watchlist distinction and terminology change procedures. Project term tables start empty.
-The `korean-copy` skill checks the same glossary before editing; original English technical terms take priority.
+[`GLOSSARY.md`](obsidian/00_Meta/GLOSSARY.md) contains the terminology workflow:
+
+- Register a new name before use, with its definition, classification criterion, collision check and source location.
+- Prefer the original English name for technical terms.
+- Replace banned terms; check watchlist terms against their actual definitions.
+- Search affected documents before changing or retiring a term, and preserve received source material.
+
+Term, banned-term and watchlist tables start empty. Research-specific terms and correction cases
+are not copied into the common template. The `korean-copy` skill reads this glossary before editing.
+The glossary markers do not run an automatic terminology checker.
 
 ### Memory system (`memory/`)
 
-Starter `MEMORY.md` index for Claude's persistent project memory (stored at `~/.claude/projects/[encoded-path]/memory/`).
+Starter `MEMORY.md` index for shared persistent project memory (stored at `~/.claude/projects/[encoded-path]/memory/`).
 
 ---
 
@@ -140,11 +154,13 @@ rm -rf .git && git init
 
 # 3. Open obsidian/ as a new vault in Obsidian
 
-# 4. Launch Claude Code — it handles the rest
+# 4. Launch Claude Code, or open the project in Codex
 claude
 ```
 
-On first launch, Claude reads `obsidian/00_Meta/START_HERE.md` and walks you through the remaining setup.
+On first launch, read `obsidian/00_Meta/START_HERE.md` and follow the onboarding instructions.
+For a checkout used to maintain Cosearch itself, retain `.git` and the Cosearch remote;
+the fresh-history step applies only to a new research project.
 
 ---
 
@@ -156,6 +172,10 @@ On first launch, Claude reads `obsidian/00_Meta/START_HERE.md` and walks you thr
 | Got deep research results | `/organize-deepresearch` — absorbs into vault |
 | Need a research direction check | `/advisor` — isolated agent diagnoses direction against ADVISOR.md |
 | Need to delegate a literature search | `/write-deepresearch-prompt` — writes the handoff doc, never searches itself |
+| Korean editing | `korean-copy` applies wording rules and checks `GLOSSARY.md` |
+| New terminology | Register the definition and source in `GLOSSARY.md` before use |
+| External review request | `write-review-prompt` writes the handoff document |
+| Template updates | `sync-from-cosearch` compares and applies selected common updates |
 | Session end | `/session-wrap` — logs the session, updates memory |
 
 ---
@@ -166,7 +186,8 @@ On first launch, Claude reads `obsidian/00_Meta/START_HERE.md` and walks you thr
 - **Literature notes**: `Author YYYY keyword.md` in `10_Literature/`
 - **Deep research files**: drop in `70_Reviews/` as `DR YYMMDD topic.md`, then `/organize-deepresearch`
 
-See `obsidian/00_Meta/CONVENTIONS.md` for the full format reference.
+See [`memory/naming_conventions.md`](memory/naming_conventions.md) for naming and output conventions.
+See [`GLOSSARY.md`](obsidian/00_Meta/GLOSSARY.md) for terminology rules.
 
 ---
 
