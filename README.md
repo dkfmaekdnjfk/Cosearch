@@ -81,7 +81,7 @@ Comes with **Dataview** pre-installed and graph view color-coded by folder.
 **Skills:**
 - `session-wrap` — End-of-session ritual: writes an EXP note, updates project status in Obsidian, and syncs the Claude memory snapshot
 - `organize-deepresearch` — Absorbs a deep research `.md` file into the existing note structure rather than creating a separate summary doc
-- `advisor` — Spawns an isolated agent to diagnose research direction against `ADVISOR.md` principles (layer 1→2→3) and saves the review to `08_Reviews/`
+- `advisor` — Spawns an isolated agent to diagnose research direction against `ADVISOR.md` principles (layer 1→2→3) and saves the review to `70_Reviews/`
 - `write-deepresearch-prompt` — Writes a self-contained prompt doc to hand off to an external AI (Claude.ai deep research etc.); never executes the search itself
 - `teach` — Turns a concept you don't understand into a structured note in `20_Concepts/`; never explains in chat
 - `sync-from-cosearch` — Fetches skill updates from this template repo and applies them selectively; warns at session start if more than 14 days since last sync
@@ -94,6 +94,19 @@ Fires automatically when Claude Code exits. Warns if today's EXP note is missing
 
 **`settings.local.json`:**
 Pre-approved permissions for WebSearch, PubMed, and common academic publisher domains.
+
+### Claude and Codex collaboration
+
+`AGENTS.md` routes Codex to the same project instructions and shared memory used by Claude.
+Session logs distinguish separate sessions on the same date. The current memory snapshot is
+limited to 50 lines and 2,000 Unicode characters; claims retain pointers to original evidence.
+
+`write-review-prompt` prepares a self-contained external review request without running the review.
+Research values are checked against original numeric tables; graph digitization is excluded.
+
+For template maintenance, keep the cloned repository's Git history and Cosearch remote.
+The “Fresh git history” step below applies to a new research project derived from the template.
+Use `sync-from-cosearch` to distribute changes or contribute explicitly requested common improvements.
 
 ### Memory system (`memory/`)
 

@@ -9,10 +9,25 @@ description: |
 
 # Cosearch 동기화 스킬
 
-Cosearch 템플릿 레포(https://github.com/dkfmaekdnjfk/Cosearch)의 `.claude/skills/`와
+Cosearch 템플릿 레포(https://github.com/dkfmaekdnjfk/Cosearch)의 `.claude/skills/`, `.agents/skills/`와
 현재 프로젝트를 비교해 새 스킬·변경사항을 선택적으로 가져온다.
 
 ---
+
+## 방향 구분
+
+기본 동작은 템플릿 → 현재 프로젝트다. 사용자가 현재 프로젝트의 개선을 Cosearch에
+반영하라고 요청하면 반대 방향으로 작업한다.
+
+- 사용자가 지정한 로컬 원본 저장소에서 `git remote get-url --push --all origin`으로
+  Cosearch 연결을 확인한다. 프로젝트에서 직접 원본에 push하지 않는다.
+- `.claude/skills/`, `.agents/skills/`, `ADVISOR.md`, 공통 지침을 비교한다.
+- 공통 개선만 옮기고 연구 고유 경로·데이터·주장·모델 설정은 옮기지 않는다.
+  템플릿의 폴더 구조와 기존 기능을 보존한다.
+- 스킬의 references/scripts 등 필요한 부속 파일도 함께 확인한다.
+- 수정한 파일을 다시 읽고 diff와 스킬 형식을 검사한다. 해당 경로만 커밋한다.
+  원격 push는 사용자 요청이 있을 때 진행한다.
+- 역방향 반영을 프로젝트 동기화 완료로 기록하지 않는다.
 
 ## Step 1: 마지막 동기화 날짜 확인
 
@@ -30,14 +45,14 @@ Cosearch 템플릿 레포(https://github.com/dkfmaekdnjfk/Cosearch)의 `.claude/
 rm -rf /tmp/cosearch_sync
 git clone --depth 1 --filter=blob:none --sparse \
   https://github.com/dkfmaekdnjfk/Cosearch.git /tmp/cosearch_sync
-cd /tmp/cosearch_sync && git sparse-checkout set .claude/skills ADVISOR.md
+cd /tmp/cosearch_sync && git sparse-checkout set .claude/skills .agents/skills ADVISOR.md
 ```
 
 ---
 
 ## Step 3: diff 비교 및 보고
 
-현재 프로젝트의 `.claude/skills/`와 비교:
+현재 프로젝트의 `.claude/skills/`, `.agents/skills/`와 비교:
 
 | 구분 | 처리 |
 |------|------|
@@ -59,7 +74,8 @@ cd /tmp/cosearch_sync && git sparse-checkout set .claude/skills ADVISOR.md
 
 ## Step 4: 선택적 적용
 
-사용자가 선택한 항목만 복사:
+사용자가 선택한 항목만 복사한다. 스킬 본문이 references/scripts/assets를 사용하면
+필요한 부속 파일도 함께 비교·반영한다. 아래는 단일 파일 스킬의 예시다:
 
 ```bash
 # 스킬 파일
