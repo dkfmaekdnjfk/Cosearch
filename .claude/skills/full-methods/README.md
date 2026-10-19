@@ -5,6 +5,7 @@
 
 - 작성 절차와 최상위 지침 원문: [SKILL.md](SKILL.md)
 - 코드·입출력·재현 명령·참고문헌·ZIP 기준: [references/evidence-and-reproduction.md](references/evidence-and-reproduction.md)
+- 긴 HTML의 고정 목차·소절 링크·좁은 화면·인쇄 기준: [references/report-navigation.md](references/report-navigation.md)
 - Codex 표시 정보: [agents/openai.yaml](agents/openai.yaml)
 
 Claude는 `.claude/skills/full-methods/`에서 사용한다. Codex용

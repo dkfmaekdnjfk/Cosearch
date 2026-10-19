@@ -81,7 +81,7 @@ Comes with **Dataview** pre-installed and graph view color-coded by folder.
 
 **Skills:**
 
-- [`full-methods`](.claude/skills/full-methods/SKILL.md): Writes self-contained HTML research reports by checking the actual analysis code, inputs, outputs and primary sources. Links methods and figures to code locations, reproduction commands and source evidence; preserves the original top-level writing instructions.
+- [`full-methods`](.claude/skills/full-methods/SKILL.md): Writes self-contained HTML research reports by checking the actual analysis code, inputs, outputs and primary sources. Links methods and figures to code locations, reproduction commands and source evidence; preserves the original top-level writing instructions. Long reports use a persistent hierarchical table of contents with direct subsection links, responsive navigation and consistent section references; see the [navigation guide](.claude/skills/full-methods/references/report-navigation.md).
 - [`korean-copy`](.claude/skills/korean-copy/SKILL.md): Korean wording rules for research and general documents. Prefers original English technical terms and prohibits colloquial wording, pronouns, em dashes and corner brackets. Checks the shared glossary before editing.
 - [`research-interpretation-review`](.claude/skills/research-interpretation-review/SKILL.md): Reviews how results and figures answer the research question. Connects the actual comparison, visual evidence and interpretation conditions without automatically running new analyses or creating figures.
 - `session-wrap`: Records each session in an EXP note, updates project status and the shared memory snapshot, and tracks code, inputs and outputs. The snapshot must stay within 50 lines and 2,000 Unicode characters.
