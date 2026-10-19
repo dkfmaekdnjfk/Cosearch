@@ -1,0 +1,3 @@
+interface:
+  display_name: "Full Methods"
+  short_description: "실제 코드·원문을 대조하고 재현 근거를 연결하는 HTML 연구 보고서 작성"

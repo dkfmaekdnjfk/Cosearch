@@ -81,6 +81,7 @@ Comes with **Dataview** pre-installed and graph view color-coded by folder.
 
 **Skills:**
 
+- [`full-methods`](.claude/skills/full-methods/SKILL.md): Writes self-contained HTML research reports by checking the actual analysis code, inputs, outputs and primary sources. Links methods and figures to code locations, reproduction commands and source evidence; preserves the original top-level writing instructions.
 - [`korean-copy`](.claude/skills/korean-copy/SKILL.md): Korean wording rules for research and general documents. Prefers original English technical terms and prohibits colloquial wording, pronouns, em dashes and corner brackets. Checks the shared glossary before editing.
 - [`research-interpretation-review`](.claude/skills/research-interpretation-review/SKILL.md): Reviews how results and figures answer the research question. Connects the actual comparison, visual evidence and interpretation conditions without automatically running new analyses or creating figures.
 - `session-wrap`: Records each session in an EXP note, updates project status and the shared memory snapshot, and tracks code, inputs and outputs. The snapshot must stay within 50 lines and 2,000 Unicode characters.
@@ -174,6 +175,7 @@ the fresh-history step applies only to a new research project.
 | Need a research direction check | `/advisor` — isolated agent diagnoses direction against ADVISOR.md |
 | Need to delegate a literature search | `/write-deepresearch-prompt` — writes the handoff doc, never searches itself |
 | Korean editing | `korean-copy` applies wording rules and checks `GLOSSARY.md` |
+| Full methods report | `full-methods` connects the HTML report to actual analysis code, outputs and primary sources |
 | Results and figure interpretation | `research-interpretation-review` checks the question, comparison, visual evidence and scientific meaning |
 | New terminology | Register the definition and source in `GLOSSARY.md` before use |
 | External review request | `write-review-prompt` writes the handoff document |

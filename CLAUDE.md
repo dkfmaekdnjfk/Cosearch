@@ -112,6 +112,7 @@
 
 | 스킬 | 위치 | 용도 |
 |------|------|------|
+| `full-methods` | `.claude/skills/` | 실제 코드·원문 대조와 입력·산출물·재현 근거를 연결한 HTML 연구 보고서 작성 |
 | `korean-copy` | `.claude/skills/` | 한국어 문구 규칙·점검, 전문 용어 영문 원문 우선 |
 | `research-interpretation-review` | `.claude/skills/` | 연구질문·비교 기준·figure 표현·실제 현상의 해석 연결 점검 |
 | `session-wrap` | `.claude/skills/` | 세션 마무리 — EXP 노트 + 메모리 업데이트 |
