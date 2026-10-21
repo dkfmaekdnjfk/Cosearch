@@ -81,6 +81,7 @@ Comes with **Dataview** pre-installed and graph view color-coded by folder.
 
 **Skills:**
 
+- [`scientific-figure`](.claude/skills/scientific-figure/SKILL.md): Designs, produces and checks scientific figures. Reuses the existing [Nature-style design system](code/scripts/FIGURE_STYLE.md), preserves data and pairing, and checks final-size output. Project-specific settings remain in each project's `FIGURE_GUIDELINES.md`.
 - [`full-methods`](.claude/skills/full-methods/SKILL.md): Writes self-contained HTML research reports by checking the actual analysis code, inputs, outputs and primary sources. Links methods and figures to code locations, reproduction commands and source evidence; preserves the original top-level writing instructions. Long reports use a persistent hierarchical table of contents with direct subsection links, responsive navigation and consistent section references; see the [navigation guide](.claude/skills/full-methods/references/report-navigation.md).
 - [`korean-copy`](.claude/skills/korean-copy/SKILL.md): Korean wording rules for research and general documents. Prefers original English technical terms and prohibits colloquial wording, pronouns, em dashes and corner brackets. Checks the shared glossary before editing.
 - [`research-interpretation-review`](.claude/skills/research-interpretation-review/SKILL.md): Reviews how results and figures answer the research question. Connects the actual comparison, visual evidence and interpretation conditions without automatically running new analyses or creating figures.

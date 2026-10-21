@@ -1,0 +1,4 @@
+interface:
+  display_name: "Scientific Figure"
+  short_description: "과학적 비교에 맞는 figure 설계·제작과 최종 출력 검수"
+  default_prompt: "$scientific-figure로 이 자료의 figure를 설계하고 제작·검수해줘."

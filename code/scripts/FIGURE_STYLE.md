@@ -2,6 +2,8 @@
 
 이 프로젝트의 모든 그림은 하나의 스타일을 공유한다. **단일 출처는 [`_figstyle.py`](_figstyle.py)** 이고, 스크립트는 복붙하지 말고 import 한다. 이 문서는 그 규칙과 이유를 적는다.
 
+Figure의 비교·패널 설계와 제작·검수 절차는 [`scientific-figure`](../../.claude/skills/scientific-figure/SKILL.md) 스킬을 사용한다. 스킬은 이 디자인 시스템을 읽고 재사용하며 별도의 스타일 dict로 대체하지 않는다. 사용자 요청·출력 목적·목표 저널의 규정에 따라 변경한 설정은 명시한다. 고정된 출력 폭과 `savefig.bbox="tight"`의 관계는 [연계 문서](../../.claude/skills/scientific-figure/references/nature-design-system.md)에서 확인한다.
+
 > 사람이 읽는 사본/맥락: `obsidian/04_Methods/Figure 디자인 시스템 — Nature 스타일 규칙.md`
 
 ---
