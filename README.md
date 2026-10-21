@@ -81,6 +81,7 @@ Comes with **Dataview** pre-installed and graph view color-coded by folder.
 
 **Skills:**
 
+- [`sentence-intent-document`](.claude/skills/sentence-intent-document/SKILL.md): Builds a document one reviewed sentence at a time, with phrase-level author intent in a second panel and reverse links to the referenced sentences. Includes the offline [two-panel HTML template](.claude/skills/sentence-intent-document/assets/sentence-review.html).
 - [`scientific-figure`](.claude/skills/scientific-figure/SKILL.md): Designs, produces and checks scientific figures. Reuses the existing [Nature-style design system](code/scripts/FIGURE_STYLE.md), preserves data and pairing, and checks final-size output. Project-specific settings remain in each project's `FIGURE_GUIDELINES.md`.
 - [`full-methods`](.claude/skills/full-methods/SKILL.md): Writes self-contained HTML research reports by checking the actual analysis code, inputs, outputs and primary sources. Links methods and figures to code locations, reproduction commands and source evidence; preserves the original top-level writing instructions. Long reports use a persistent hierarchical table of contents with direct subsection links, responsive navigation and consistent section references; see the [navigation guide](.claude/skills/full-methods/references/report-navigation.md).
 - [`korean-copy`](.claude/skills/korean-copy/SKILL.md): Korean wording rules for research and general documents. Prefers original English technical terms and prohibits colloquial wording, pronouns, em dashes and corner brackets. Checks the shared glossary before editing.
@@ -177,6 +178,7 @@ the fresh-history step applies only to a new research project.
 | Need to delegate a literature search | `/write-deepresearch-prompt` — writes the handoff doc, never searches itself |
 | Korean editing | `korean-copy` applies wording rules and checks `GLOSSARY.md` |
 | Full methods report | `full-methods` connects the HTML report to actual analysis code, outputs and primary sources |
+| Sentence-by-sentence drafting | `sentence-intent-document` links each reviewed sentence and phrase to its purpose in a two-panel HTML document |
 | Results and figure interpretation | `research-interpretation-review` checks the question, comparison, visual evidence and scientific meaning |
 | New terminology | Register the definition and source in `GLOSSARY.md` before use |
 | External review request | `write-review-prompt` writes the handoff document |

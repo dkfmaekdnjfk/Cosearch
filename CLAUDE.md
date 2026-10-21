@@ -112,6 +112,7 @@
 
 | 스킬 | 위치 | 용도 |
 |------|------|------|
+| `sentence-intent-document` | `.claude/skills/` | 한 문장씩 검토하고 표현별 작성 의도·문장 역참조를 연결하는 두 패널 HTML 제작 |
 | `scientific-figure` | `.claude/skills/` | 기존 Nature 디자인 시스템과 연계한 figure 설계·제작·자료 및 최종 출력 검수 |
 | `full-methods` | `.claude/skills/` | 실제 코드·원문 대조와 입력·산출물·재현 근거를 연결한 HTML 연구 보고서 작성 |
 | `korean-copy` | `.claude/skills/` | 한국어 문구 규칙·점검, 전문 용어 영문 원문 우선 |

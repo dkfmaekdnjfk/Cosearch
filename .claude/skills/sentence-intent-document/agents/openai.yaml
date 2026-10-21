@@ -1,0 +1,4 @@
+interface:
+  display_name: "문장별 의도 검토 문서"
+  short_description: "문장을 하나씩 검토하고 표현별 작성 의도를 연결하는 HTML 작성"
+  default_prompt: "$sentence-intent-document로 문장을 하나씩 검토하고 표현별 작성 의도를 연결하는 HTML 문서를 만들어줘."

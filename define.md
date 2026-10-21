@@ -5,6 +5,7 @@
 - advisor_principles: `ADVISOR.md`
 - claude_skills: `.claude/skills/`
 - agent_skills: `.agents/skills/`
+- sentence_intent_document_skill: `.claude/skills/sentence-intent-document/` (문장별 검토 지침과 오프라인 두 패널 HTML 템플릿)
 - interpretation_review_skill: `.claude/skills/research-interpretation-review/SKILL.md` (연구 결과·그림 해설의 논리 연결 점검)
 - glossary_file: `obsidian/00_Meta/GLOSSARY.md` (정의와 운영 절차의 정본)
 - template_vault: `obsidian/` (폴더 정의는 README.md)
