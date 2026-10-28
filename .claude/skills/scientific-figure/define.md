@@ -2,6 +2,7 @@
 
 - `scientific-figure`: 연구질문에 맞는 figure의 설계·제작·검수 스킬.
 - `FIGURE_GUIDELINES.md`: 프로젝트가 관리하는 실험·표현 설정. 스킬은 루트 또는 `obsidian/00_Meta/`에서 확인한다.
+- Gate 0–4: 제작 입력, 자료 무결성, 최종 크기 시각 검사, 출판 파일 검사, 읽기·독립 에이전트 검토의 진행 기준. 세부 판정은 `references/validation.md`를 따른다.
 - `_figstyle.py`: 기존 Nature 디자인 시스템의 실행 모듈. 스킬은 `NATURE_RC`와 팔레트를 복제하지 않고 import한다.
 - `preflight_pdf.arguments()`: 입력 PDF와 명시적인 검사 한계·렌더링 옵션을 읽는다.
 - `preflight_pdf.inspect_page()`: 치수·텍스트·선·폰트·raster 정보를 수집하고 지정 기준 위반을 기록한다.
